@@ -1,0 +1,21 @@
+.width30{
+    width:30%;
+}
+.custom_img{
+     width:150px;
+     height: 150px;
+ }
+.custom_thead{
+    background-color: #12193e;
+    color: #fff;
+}
+/*
+.float_right{
+    float:  right !important;
+}
+
+.card_title_center{
+    width: 100%;
+    text-align: center !important;
+}
+*/
