@@ -58,6 +58,24 @@
                                 <p>بيانات فئات الفواتير</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.store.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>  بيانات المخازن</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.inv_uoms.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>  بيانات الوحدات</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('item_categories.index') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>  فئات الاصناف</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">

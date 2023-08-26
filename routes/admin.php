@@ -1,10 +1,13 @@
 <?php
-define('PAGINATION_COUNT',10);
+define('PAGINATION_COUNT',3);
 
 use App\Http\Controllers\Admin\AdminPanelSettingController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\InvItemcardCategoriesController;
+use App\Http\Controllers\Admin\InvUomController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\SalesMatrialTypeController;
+use App\Http\Controllers\Admin\StoreController;
 use App\Http\Controllers\Admin\TreasurieController;
 use App\Http\Controllers\Admin\TreasurieDeliveriesController;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +34,7 @@ Route::get('login',function (){
 */
 //Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
 
-Route::group(['namespace' => 'Admin','prefix' => 'admin', 'Middleware' => 'auth:admin'] ,function (){
+Route::group(['prefix' => 'admin', 'Middleware' => 'auth:admin'] ,function (){
 
     Route::get('adminPanelSettings',[AdminPanelSettingController::class,'index'])->name('admin.adminPanelSettings.index');
     Route::get('adminPanelSettingsEdit/{id}',[AdminPanelSettingController::class,'edit'])->name('admin.adminPanelSettings.edit');
@@ -45,10 +48,10 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin', 'Middleware' => 'auth:
     Route::post('treasuries/store',[TreasurieController::class,'store'])->name('admin.treasuries.store');
     Route::post('treasuries/ajaxSearch',[TreasurieController::class,'ajax_search'])->name('admin.treasuries.ajax_search');
     Route::post('treasuries/update/{id}',[TreasurieController::class,'update'])->name('admin.treasuries.update');
-    Route::get('admin/details/{id}',[TreasurieDeliveriesController::class,'index'])->name('admin.details.index');
-    Route::get('admin/deliveries/{id}',[TreasurieDeliveriesController::class,'create'])->name('admin.treasurie_deliveries.add_treasurie_deliveries');
-    Route::post('admin/deliveries/{id}',[TreasurieDeliveriesController::class,'store'])->name('admin.reasurie_deliveries.store');
-    Route::get('admin/destroy/{id}',[TreasurieDeliveriesController::class,'destroy'])->name('admin.details.destroy');
+    Route::get('details/{id}',[TreasurieDeliveriesController::class,'index'])->name('admin.details.index');
+    Route::get('deliveries/{id}',[TreasurieDeliveriesController::class,'create'])->name('admin.treasurie_deliveries.add_treasurie_deliveries');
+    Route::post('deliveries/{id}',[TreasurieDeliveriesController::class,'store'])->name('admin.reasurie_deliveries.store');
+    Route::get('destroy/{id}',[TreasurieDeliveriesController::class,'destroy'])->name('admin.details.destroy');
     /// End Treasuries
     /// Start sales_matrial_types
     Route::get('sales',[SalesMatrialTypeController::class,'index'])->name('admin.sales_matrial_types.index');
@@ -59,7 +62,32 @@ Route::group(['namespace' => 'Admin','prefix' => 'admin', 'Middleware' => 'auth:
     Route::get('sales/destroy/{id}',[SalesMatrialTypeController::class,'destroy'])->name('admin.sales_matrial_types.destroy');
 
     /// End sales_matrial_types
+    /// Start Stores
 
+    Route::get('store',[StoreController::class,'index'])->name('admin.store.index');
+    Route::get('store/create',[StoreController::class,'create'])->name('admin.store.create');
+    Route::post('store/store',[StoreController::class,'store'])->name('admin.store.store');
+    Route::get('edit/{id}',[StoreController::class,'edit'])->name('admin.store.edit');
+    Route::post('update/{id}',[StoreController::class,'update'])->name('admin.store.update');
+    Route::get('destroy/{id}',[StoreController::class,'destroy'])->name('admin.store.destroy');
+    /// End Stores
+
+    /// Start inv_uoms
+    Route::get('inv_uoms/',[InvUomController::class,'index'])->name('admin.inv_uoms.index');
+    Route::get('inv_uoms/create',[InvUomController::class,'create'])->name('admin.inv_uoms.create');
+    Route::post('inv_uoms/store',[InvUomController::class,'store'])->name('admin.inv_uoms.store');
+    Route::get('inv_uoms/edit/{id}',[InvUomController::class,'edit'])->name('admin.inv_uoms.edit');
+    Route::post('inv_uoms/update/{id}',[InvUomController::class,'update'])->name('admin.inv_uoms.update');
+    Route::get('inv_uoms/destroy/{id}',[InvUomController::class,'destroy'])->name('admin.inv_uoms.destroy');
+    Route::post('inv_uoms/ajax_search',[InvUomController::class,'ajax_search'])->name('admin.inv_uoms.ajax_search');
+    /// End inv_uoms
+
+
+    // Start Uoms
+
+    Route::resource('item_categories',InvItemcardCategoriesController::class);
+
+    // End Uoms
     Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
 
     Route::get('logout',[LoginController::class,'store'])->name('admin.logout');

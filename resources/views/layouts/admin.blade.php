@@ -85,6 +85,7 @@
 <script src="{{ asset('assets/admin/dist/js/demo.js') }}"></script>
 <script src="{{ asset('assets/admin/js/general.js') }}"></script>
 <script src="{{ asset('assets/admin/js/treasuries.js') }}"></script>
+<script src="{{ asset('assets/admin/js/inv_ousm.js') }}"></script>
 @yield('script')
 </body>
 </html>
